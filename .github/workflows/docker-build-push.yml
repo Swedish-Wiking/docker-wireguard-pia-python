@@ -27,7 +27,7 @@ jobs:
       -
         name: Login to DockerHub
         uses: docker/login-action@v3
-        if: github.repository_owner == 'thrnz'
+        if: github.repository_owner == 'Swedish-Wiking'
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -36,7 +36,7 @@ jobs:
         id: docker-meta
         uses: docker/metadata-action@v5
         with:
-          images: thrnz/docker-wireguard-pia
+          images: Swedish-Wiking/docker-wireguard-pia-python
           tags: |
             # Tag branches with branch name, but disable for default branch
             type=ref,event=branch,enable=${{ github.ref_name != 'master' }}
@@ -48,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64,linux/arm,linux/arm64
-          push: ${{ github.repository_owner == 'thrnz' }}
+          push: ${{ github.repository_owner == 'Swedish-Wiking' }}
           tags: ${{ steps.docker-meta.outputs.tags }}
           labels: ${{ steps.docker-meta.outputs.labels }}
       -
