@@ -1,6 +1,6 @@
 services:
     vpn:
-        image: thrnz/docker-wireguard-pia
+        image: swedishwiking/docker-wireguard-pia-python
         volumes:
             # Auth token is stored here
             - pia:/pia
@@ -36,7 +36,7 @@ services:
         # This can also be used to ensure the vpn is up before starting other containers
         # using the vpn connection
         healthcheck:
-            test: ping -c 1 www.google.com || exit 1
+            test: ping -c 1 1.1.1.1 || exit 1
             interval: 300s
             timeout: 10s
             retries: 3
